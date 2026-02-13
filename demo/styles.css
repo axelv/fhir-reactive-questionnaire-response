@@ -1,0 +1,90 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 2rem;
+  background: #f5f5f5;
+  color: #1a1a1a;
+}
+
+h1 { text-align: center; margin-bottom: 1rem; }
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.tab-btn {
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 500;
+}
+
+.tab-btn.active {
+  background: #1a1a1a;
+  color: white;
+  border-color: #1a1a1a;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* React demo-form scoped styles */
+.demo-form {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.demo-form h2 { margin-top: 0; }
+.demo-form .item { margin-bottom: 1rem; }
+.demo-form .item.disabled { opacity: 0.4; pointer-events: none; }
+.demo-form label { display: block; font-weight: 500; margin-bottom: 0.25rem; }
+
+.demo-form input,
+.demo-form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font: inherit;
+}
+
+.demo-form input[type="checkbox"] { width: auto; }
+.demo-form input[readonly] { background: #f0f0f0; color: #555; }
+
+.demo-form fieldset {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.demo-form legend { font-weight: 600; }
+.demo-form .display-text { color: #555; font-style: italic; }
+
+.demo-form .option { margin-bottom: 0.25rem; }
+.demo-form .option.option-disabled { opacity: 0.4; }
+.demo-form .option label { display: inline; font-weight: normal; }
+
+.demo-form pre {
+  background: #1e1e1e;
+  color: #d4d4d4;
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 0.8rem;
+  max-height: 300px;
+}

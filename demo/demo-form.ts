@@ -3,14 +3,6 @@ import { SignalWatcher } from "@lit-labs/signals";
 import { ReactiveQuestionnaireResponse, optionDisplay } from "../src/index.js";
 import type { ReactiveResponseItem } from "../src/index.js";
 import type { Questionnaire, QuestionnaireResponse } from "../src/types.js";
-import {
-  bmiQuestionnaire,
-  emptyBmiResponse,
-  allergyQuestionnaire,
-  emptyAllergyResponse,
-  medicationQuestionnaire,
-  emptyMedicationResponse,
-} from "./questionnaires.js";
 
 class DemoForm extends SignalWatcher(LitElement) {
   static properties = {
@@ -96,7 +88,7 @@ class DemoForm extends SignalWatcher(LitElement) {
         const checked = answers?.[0]?.valueBoolean ?? false;
         return html`<input type="checkbox" .checked=${checked} ?disabled=${readonly}
           @change=${(e: Event) => {
-            item.answer = [{ valueBoolean: (e.target as HTMLInputElement).checked }];
+            item.setAnswer([{ valueBoolean: (e.target as HTMLInputElement).checked }]);
           }} />`;
       }
       case "decimal": {
@@ -104,7 +96,7 @@ class DemoForm extends SignalWatcher(LitElement) {
         return html`<input type="number" step="any" .value=${String(val)} ?readonly=${readonly}
           @input=${(e: Event) => {
             const n = parseFloat((e.target as HTMLInputElement).value);
-            item.answer = isNaN(n) ? [] : [{ valueDecimal: n }];
+            item.setAnswer(isNaN(n) ? [] : [{ valueDecimal: n }]);
           }} />`;
       }
       case "integer": {
@@ -112,21 +104,21 @@ class DemoForm extends SignalWatcher(LitElement) {
         return html`<input type="number" step="1" .value=${String(val)} ?readonly=${readonly}
           @input=${(e: Event) => {
             const n = parseInt((e.target as HTMLInputElement).value, 10);
-            item.answer = isNaN(n) ? [] : [{ valueInteger: n }];
+            item.setAnswer(isNaN(n) ? [] : [{ valueInteger: n }]);
           }} />`;
       }
       case "text": {
         const val = answers?.[0]?.valueString ?? "";
         return html`<textarea .value=${val} ?readonly=${readonly}
           @input=${(e: Event) => {
-            item.answer = [{ valueString: (e.target as HTMLTextAreaElement).value }];
+            item.setAnswer([{ valueString: (e.target as HTMLTextAreaElement).value }]);
           }}></textarea>`;
       }
       case "date": {
         const val = answers?.[0]?.valueDate ?? "";
         return html`<input type="date" .value=${val} ?readonly=${readonly}
           @input=${(e: Event) => {
-            item.answer = [{ valueDate: (e.target as HTMLInputElement).value }];
+            item.setAnswer([{ valueDate: (e.target as HTMLInputElement).value }]);
           }} />`;
       }
       case "choice":
@@ -143,7 +135,7 @@ class DemoForm extends SignalWatcher(LitElement) {
               <div class="option ${opt.enabled ? "" : "option-disabled"}">
                 <input type="radio" name="${item.linkId}" .checked=${checked}
                   ?disabled=${!opt.enabled || readonly}
-                  @change=${() => { item.answer = [{ ...opt.value }]; }} />
+                  @change=${() => { item.setAnswer([{ ...opt.value }]); }} />
                 <label>${label}</label>
               </div>
             `;
@@ -154,7 +146,7 @@ class DemoForm extends SignalWatcher(LitElement) {
         const val = answers?.[0]?.valueString ?? "";
         return html`<input type="text" .value=${val} ?readonly=${readonly}
           @input=${(e: Event) => {
-            item.answer = [{ valueString: (e.target as HTMLInputElement).value }];
+            item.setAnswer([{ valueString: (e.target as HTMLInputElement).value }]);
           }} />`;
       }
     }
@@ -171,9 +163,7 @@ class DemoForm extends SignalWatcher(LitElement) {
 }
 customElements.define("demo-form", DemoForm);
 
-// --- Bootstrap ---
-
-function createForm(
+export function createForm(
   questionnaire: Questionnaire,
   response: QuestionnaireResponse,
 ): DemoForm {
@@ -182,8 +172,3 @@ function createForm(
   el.heading = questionnaire.title ?? questionnaire.id ?? "Questionnaire";
   return el;
 }
-
-const app = document.getElementById("app")!;
-app.appendChild(createForm(bmiQuestionnaire, emptyBmiResponse));
-app.appendChild(createForm(allergyQuestionnaire, emptyAllergyResponse));
-app.appendChild(createForm(medicationQuestionnaire, emptyMedicationResponse));

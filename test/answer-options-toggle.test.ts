@@ -137,7 +137,7 @@ describe("answerOptionsToggleExpression", () => {
     expect(medication.answerOptions[1].enabled).toBe(false);
     expect(medication.answerOptions[2].enabled).toBe(false);
 
-    toggle.answer = [{ valueBoolean: true }];
+    toggle.setAnswer([{ valueBoolean: true }]);
 
     expect(medication.answerOptions[1].enabled).toBe(true);
     expect(medication.answerOptions[2].enabled).toBe(true);
@@ -150,7 +150,7 @@ describe("answerOptionsToggleExpression", () => {
 
     expect(medication.answerOptions[1].enabled).toBe(true);
 
-    toggle.answer = [{ valueBoolean: false }];
+    toggle.setAnswer([{ valueBoolean: false }]);
 
     expect(medication.answerOptions[1].enabled).toBe(false);
     expect(medication.answerOptions[2].enabled).toBe(false);
@@ -163,10 +163,10 @@ describe("answerOptionsToggleExpression", () => {
 
     expect(medication.answerOptions[0].enabled).toBe(true);
 
-    toggle.answer = [{ valueBoolean: true }];
+    toggle.setAnswer([{ valueBoolean: true }]);
     expect(medication.answerOptions[0].enabled).toBe(true);
 
-    toggle.answer = [{ valueBoolean: false }];
+    toggle.setAnswer([{ valueBoolean: false }]);
     expect(medication.answerOptions[0].enabled).toBe(true);
   });
 });

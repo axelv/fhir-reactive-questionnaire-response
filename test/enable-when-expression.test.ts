@@ -79,7 +79,7 @@ describe("enableWhenExpression", () => {
 
     expect(details.enabled).toBe(false);
 
-    toggle.answer = [{ valueBoolean: true }];
+    toggle.setAnswer([{ valueBoolean: true }]);
 
     expect(details.enabled).toBe(true);
   });
@@ -107,7 +107,7 @@ describe("enableWhenExpression", () => {
 
     expect(details.enabled).toBe(true);
 
-    toggle.answer = [{ valueBoolean: false }];
+    toggle.setAnswer([{ valueBoolean: false }]);
 
     expect(details.enabled).toBe(false);
   });

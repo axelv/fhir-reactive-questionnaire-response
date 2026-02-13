@@ -29,6 +29,11 @@ export const allergyQuestionnaire: Questionnaire = {
         { question: "has-allergies", operator: "=", answerBoolean: true },
       ],
     },
+    {
+      linkId: "notes",
+      text: "Additional notes",
+      type: "string",
+    },
   ],
 };
 
@@ -40,6 +45,7 @@ export const emptyAllergyResponse: QuestionnaireResponse = {
     { linkId: "has-allergies" },
     { linkId: "allergy-description" },
     { linkId: "severity" },
+    { linkId: "notes" },
   ],
 };
 

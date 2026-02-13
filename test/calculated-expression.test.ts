@@ -99,7 +99,7 @@ describe("Calculated expression via signals", () => {
     const [a] = rqr.getItems("a");
     const [sumItem] = rqr.getItems("sum");
 
-    a.answer = [{ valueDecimal: 50 }];
+    a.setAnswer([{ valueDecimal: 50 }]);
 
     expect(sumItem.answer).toEqual([{ valueDecimal: 70 }]);
   });

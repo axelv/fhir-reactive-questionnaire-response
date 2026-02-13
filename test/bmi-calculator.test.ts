@@ -39,7 +39,7 @@ describe("BMI Calculator — full integration", () => {
     const [bmi] = rqr.getItems("bmi");
     const [category] = rqr.getItems("bmi-category");
 
-    weight.answer = [{ valueDecimal: 100 }];
+    weight.setAnswer([{ valueDecimal: 100 }]);
 
     // BMI = 100 / (1.80)^2 ≈ 30.86
     expect(bmi.answer![0].valueDecimal).toBeCloseTo(30.86, 1);
@@ -56,8 +56,8 @@ describe("BMI Calculator — full integration", () => {
     const [bmi] = rqr.getItems("bmi");
     const [category] = rqr.getItems("bmi-category");
 
-    weight.answer = [{ valueDecimal: 100 }];
-    height.answer = [{ valueDecimal: 200 }];
+    weight.setAnswer([{ valueDecimal: 100 }]);
+    height.setAnswer([{ valueDecimal: 200 }]);
 
     // BMI = 100 / (2.00)^2 = 25
     expect(bmi.answer![0].valueDecimal).toBe(25);

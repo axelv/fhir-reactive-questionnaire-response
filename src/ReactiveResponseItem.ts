@@ -117,7 +117,7 @@ export class ReactiveResponseItem {
     return this.#answer.get();
   }
 
-  set answer(value: AnswerValue[]) {
+  setAnswer(value: AnswerValue[]): void {
     if (Signal.isState(this.#answer)) {
       (this.#answer as Signal.State<AnswerValue[] | null>).set(value);
     }

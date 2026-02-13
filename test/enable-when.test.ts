@@ -68,7 +68,7 @@ describe("enableWhen — equals operator", () => {
 
     expect(pregnant.enabled).toBe(false);
 
-    gender.answer = [{ valueCoding: { system: "http://hl7.org/fhir/administrative-gender", code: "female" } }];
+    gender.setAnswer([{ valueCoding: { system: "http://hl7.org/fhir/administrative-gender", code: "female" } }]);
 
     expect(pregnant.enabled).toBe(true);
   });
@@ -132,7 +132,7 @@ describe("enableWhen — exists operator", () => {
     const rqr = new ReactiveQuestionnaireResponse(q);
     expect(rqr.getItems("fallback")[0].enabled).toBe(true);
 
-    rqr.getItems("reason")[0].answer = [{ valueString: "something" }];
+    rqr.getItems("reason")[0].setAnswer([{ valueString: "something" }]);
     expect(rqr.getItems("fallback")[0].enabled).toBe(false);
   });
 });
@@ -328,7 +328,7 @@ describe("enableBehavior", () => {
     // age passes but consent fails
     expect(rqr.getItems("details")[0].enabled).toBe(false);
 
-    rqr.getItems("consent")[0].answer = [{ valueBoolean: true }];
+    rqr.getItems("consent")[0].setAnswer([{ valueBoolean: true }]);
     expect(rqr.getItems("details")[0].enabled).toBe(true);
   });
 
@@ -366,7 +366,7 @@ describe("enableBehavior", () => {
     const rqr = new ReactiveQuestionnaireResponse(questionnaire, bothFalse);
     expect(rqr.getItems("income-section")[0].enabled).toBe(false);
 
-    rqr.getItems("student")[0].answer = [{ valueBoolean: true }];
+    rqr.getItems("student")[0].setAnswer([{ valueBoolean: true }]);
     expect(rqr.getItems("income-section")[0].enabled).toBe(true);
   });
 
@@ -441,7 +441,7 @@ describe("enableWhen — quantity comparison", () => {
     const rqr = new ReactiveQuestionnaireResponse(questionnaire, response);
     expect(rqr.getItems("overweight-advice")[0].enabled).toBe(false);
 
-    rqr.getItems("weight")[0].answer = [{ valueQuantity: { value: 105, unit: "kg" } }];
+    rqr.getItems("weight")[0].setAnswer([{ valueQuantity: { value: 105, unit: "kg" } }]);
     expect(rqr.getItems("overweight-advice")[0].enabled).toBe(true);
   });
 });
